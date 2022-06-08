@@ -1,0 +1,26 @@
+{
+  "name": "release2gdrive",
+  "author": "Killian Hale",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "commit": "./node_modules/cz-customizable/standalone.js",
+    "check-commit": "node ./scripts/commit-lint.js",
+    "check-lock-files": "node ./scripts/check-lock-files.js",
+    "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "husky": "^8.0.1",
+    "pinst": "^3.0.0",
+    "semver": "^7.3.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  },
+  "packageManager": "yarn@3.1.1"
+}
