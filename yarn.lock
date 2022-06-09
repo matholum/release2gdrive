@@ -1039,6 +1039,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/underscore@npm:^1.11.4":
+  version: 1.11.4
+  resolution: "@types/underscore@npm:1.11.4"
+  checksum: db9f8486bc851b732259e51f42d62aad1ae2158be5724612dc125ece5f5d61c51447f9dea28284c2a0f79cb95e788d01cb5ce97709880019213e69fab0dd1696
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 21.0.0
   resolution: "@types/yargs-parser@npm:21.0.0"
@@ -4488,6 +4495,7 @@ __metadata:
   resolution: "release2gdrive@workspace:."
   dependencies:
     "@types/jest": ^28.1.1
+    "@types/underscore": ^1.11.4
     "@typescript-eslint/eslint-plugin": ^5.27.1
     "@typescript-eslint/parser": ^5.27.1
     commitizen: ^4.2.4
@@ -4503,6 +4511,7 @@ __metadata:
     prettier-plugin-import-sort: ^0.0.7
     semver: ^7.3.7
     ts-jest: ^28.0.4
+    ts-node: ^10.8.1
     typescript: ^4.7.3
     underscore: ^1.13.4
   bin:
@@ -5092,7 +5101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.8.0":
+"ts-node@npm:^10.8.0, ts-node@npm:^10.8.1":
   version: 10.8.1
   resolution: "ts-node@npm:10.8.1"
   dependencies:

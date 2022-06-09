@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { types, scopes } = require('../.cz-config.js');
+import { types, scopes } from '../.cz-config.js';
 
 console.log('🧐🧐 Validating git commit message 🧐🧐\n\n');
 const gitMessage = require('child_process')

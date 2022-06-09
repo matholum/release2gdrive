@@ -8,14 +8,15 @@
   "scripts": {
     "build": "tsc -p tsconfig.lib.json",
     "commit": "./node_modules/cz-customizable/standalone.js",
-    "check-commit": "node ./scripts/commit-lint.js",
-    "check-lock-files": "node ./scripts/check-lock-files.js",
-    "copy-package-json": "node ./scripts/copy-package-json.js",
+    "check-commit": "ts-node ./scripts/commit-lint.ts",
+    "check-lock-files": "ts-node ./scripts/check-lock-files.ts",
+    "copy-package-json": "ts-node ./scripts/copy-package-json.ts",
     "postinstall": "husky install",
     "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^28.1.1",
+    "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "commitizen": "^4.2.4",
@@ -31,6 +32,7 @@
     "prettier-plugin-import-sort": "^0.0.7",
     "semver": "^7.3.7",
     "ts-jest": "^28.0.4",
+    "ts-node": "^10.8.1",
     "typescript": "^4.7.3"
   },
   "config": {
