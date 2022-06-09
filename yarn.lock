@@ -2341,6 +2341,7 @@ __metadata:
     prettier-plugin-import-sort: ^0.0.7
     semver: ^7.3.7
     typescript: ^4.7.3
+    underscore: ^1.13.4
   bin:
     release2gdrive: ./src/index.js
   languageName: unknown
@@ -2788,6 +2789,13 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 8257ce7ecbbf9416da60045a76a99d473698ca9e973fa0ddab7137cacb1587255431176cbbcc801a650938c4dc8109ab88355774829a714fabe56a53a2fe4524
+  languageName: node
+  linkType: hard
+
+"underscore@npm:^1.13.4":
+  version: 1.13.4
+  resolution: "underscore@npm:1.13.4"
+  checksum: 6b04f66cd454e8793a552dc49c71e24e5208a29b9d9c0af988a96948af79103399c36fb15db43f3629bfed152f8b1fe94f44e1249e9d196069c0fc7edfadb636
   languageName: node
   linkType: hard
 
