@@ -48,6 +48,7 @@ testem.log
 Thumbs.db
 
 *.js
+*.js.map
 !jest.config.js
 !jest.preset.js
 *.d.ts

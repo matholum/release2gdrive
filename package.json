@@ -3,7 +3,10 @@
   "author": "Killian Hale",
   "version": "0.0.1",
   "license": "MIT",
+  "bin": "./src/index.js",
+  "main": "./src/index.js",
   "scripts": {
+    "build": "tsc",
     "commit": "./node_modules/cz-customizable/standalone.js",
     "check-commit": "node ./scripts/commit-lint.js",
     "check-lock-files": "node ./scripts/check-lock-files.js",
@@ -15,7 +18,8 @@
     "cz-customizable": "^6.3.0",
     "husky": "^8.0.1",
     "pinst": "^3.0.0",
-    "semver": "^7.3.7"
+    "semver": "^7.3.7",
+    "typescript": "^4.7.3"
   },
   "config": {
     "commitizen": {
