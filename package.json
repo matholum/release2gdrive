@@ -7,6 +7,7 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json",
+    "clean": "ts-node ./scripts/clean.ts",
     "commit": "./node_modules/cz-customizable/standalone.js",
     "check-commit": "ts-node ./scripts/commit-lint.ts",
     "check-lock-files": "ts-node ./scripts/check-lock-files.ts",
@@ -15,6 +16,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@types/glob": "^7.2.0",
     "@types/jest": "^28.1.1",
     "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
@@ -24,6 +26,7 @@
     "cz-customizable": "^6.3.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
+    "glob": "^8.0.3",
     "husky": "^8.0.1",
     "import-sort-style-renke": "^6.0.0",
     "jest": "^28.1.1",
