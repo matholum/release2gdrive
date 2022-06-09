@@ -46,3 +46,29 @@ artifacts:
 	echo 📦 Zipping $(BUILD_DIR)...
 	mkdir -p $(DIST_DIR)
 	zip -q -r "$(DIST_DIR)/$(package_name)_$(current_version).zip" $(BUILD_DIR);
+
+.PHONY: version
+version:
+	echo $(NEWLINE)🏷 Tagging and updating version...
+
+	yarn install --immutable;
+
+	$(eval current_version = $(shell npm pkg get version))
+	# $(eval new_version = $(shell yarn dlx -q semver -i patch $(current_version)))
+	$(eval new_version = $(shell yarn dlx -q semver -i prerelease --preid=rc $(current_version)))
+
+ifeq ($(tag), true)
+	git tag v$(current_version);
+	git push origin v$(current_version)
+endif
+ifdef commit-branch
+	git checkout $(commit-branch)
+endif
+
+	npm version $(new_version) --commit-hooks=false --git-tag-version=false;
+
+ifeq ($(commit), true)
+	git add .
+	git commit -m 'chore(repo): bumping version to $(new_version)';
+	git push -u origin $(PUSH_BRANCH)
+endif
