@@ -17,6 +17,7 @@ build:
 	corepack enable
 	yarn install --immutable
 	yarn build
+	yarn test
 
 .PHONY: format
 format:
@@ -40,6 +41,7 @@ artifacts:
 
 	yarn install --immutable
 	yarn build --outDir ./build
+	yarn test
 	yarn copy-package-json
 	cp README.md LICENSE $(BUILD_DIR)
 
