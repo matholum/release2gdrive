@@ -1,0 +1,40 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+      - '!dependabot/**'
+
+jobs:
+  build:
+    if: github.actor!= 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        token: ${{ github.token }}
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '17'
+        cache: 'yarn'
+    - name: Build affected
+      env:
+        BASE_REF: origin/${{ github.base_ref }}
+        HEAD_REF: origin/${{ github.head_ref }}
+        GITHUB_USER: ${{ secrets.GIT_USER_KILLIAN }}
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_KILLIAN }}
+      run: |
+        git config --global user.email "hale.killian@gmail.com"
+        git config --global user.name "Killian Hale"
+        make format commit=true commit-branch=$HEAD_REF
+        make
+    - uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        directory: ./coverage
+        flags: unittests
+        name: ${{ github.head_ref }}
+        commit_parent: ${{ github.sha }}

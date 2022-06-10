@@ -23,6 +23,7 @@ build:
 format:
 	echo $(NEWLINE)🧼️ Formatting and linting files...
 
+	corepack enable
 	yarn install --immutable
 	yarn dlx prettier --write --list-different "src/**/*.ts"
 	yarn dlx eslint --fix
@@ -49,6 +50,12 @@ artifacts:
 	mkdir -p $(DIST_DIR)
 	zip -q -r "$(DIST_DIR)/$(package_name)_$(current_version).zip" $(BUILD_DIR);
 
+ifneq (,$(wildcard RELEASE_VERSION))
+	rm RELEASE_VERSION
+endif
+
+	echo $(current_version) >> RELEASE_VERSION
+
 .PHONY: version
 version:
 	echo $(NEWLINE)🏷 Tagging and updating version...
@@ -57,7 +64,7 @@ version:
 
 	$(eval current_version = $(shell npm pkg get version))
 	# $(eval new_version = $(shell yarn dlx -q semver -i patch $(current_version)))
-	$(eval new_version = $(shell yarn dlx -q semver -i prerelease --preid=rc $(current_version)))
+	$(eval new_version = $(shell yarn dlx -q semver -i prerelease --preid=alpha $(current_version)))
 
 ifeq ($(tag), true)
 	git tag v$(current_version);

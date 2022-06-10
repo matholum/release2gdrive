@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Hub CLI
+        run: |
+          wget -q -O- \
+          https://github.com/github/hub/releases/download/v2.12.8/hub-linux-amd64-2.12.8.tgz  | \
+          tar xz --strip-components=1 --wildcards '*/bin/hub'
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GIT_TOKEN_KILLIAN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '17'
+          cache: 'yarn'
+      - name: Create build artifacts
+        env:
+          GITHUB_USER: ${{ secrets.GIT_USER_KILLIAN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_KILLIAN }}
+        run: |
+          git config user.email "hale.killian@gmail.com"
+          git config user.name "Killian Hale"
+          make artifacts
+          make version tag=true commit=true commit-branch=develop
+      - name: Set variables
+        run: |
+          VER=$(cat RELEASE_VERSION)
+          echo "RELEASE_VERSION=$VER" >> $GITHUB_ENV
+      - name: Create release
+        env:
+          GITHUB_USER: ${{ secrets.GIT_USER_KILLIAN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_KILLIAN }}
+          RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          echo 🚢 Creating release $RELEASE_VERSION...\n
+          hub release create -a ./dist -d -m "$RELEASE_VERSION" -m "$COMMIT_MESSAGE" "v$RELEASE_VERSION"

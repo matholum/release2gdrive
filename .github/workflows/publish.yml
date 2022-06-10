@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Hub CLI
+        run: |
+          wget -q -O- \
+          https://github.com/github/hub/releases/download/v2.12.8/hub-linux-amd64-2.12.8.tgz  | \
+          tar xz --strip-components=1 --wildcards '*/bin/hub'
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ github.token }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '17'
+          registry-url: https://registry.npmjs.org/
+      - name: Get release assets
+        env:
+          GITHUB_USER: ${{ secrets.GIT_USER_KILLIAN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_KILLIAN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN_KILLIAN}}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          PACKAGES_DIST_DIR: ./dist/packages
+        run: |
+          echo 📩 Fetching release assets...
+          hub release download "$TAG_NAME" -i "*.zip";
+          
+          echo 📦 Unzipping release2gdrive_$TAG_NAME.zip...
+          unzip -q release2gdrive_$TAG_NAME.zip
+
+          echo 📡 Publishing to npm...
+          npm publish ./build
