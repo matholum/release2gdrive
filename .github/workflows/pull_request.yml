@@ -14,13 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
         token: ${{ github.token }}
+        fetch-depth: 0
     - uses: actions/setup-node@v2
       with:
         node-version: '17'
         cache: 'yarn'
-    - name: Build affected
+    - name: Build
       env:
         BASE_REF: origin/${{ github.base_ref }}
         HEAD_REF: origin/${{ github.head_ref }}

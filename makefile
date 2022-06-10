@@ -6,7 +6,7 @@ define NEWLINE
 
 endef
 
-ifeq ($(commit-branch),)
+ifdef commit-branch
 PUSH_BRANCH = $(commit-branch)
 endif
 
@@ -25,12 +25,19 @@ format:
 
 	corepack enable
 	yarn install --immutable
-	yarn dlx prettier --write --list-different "src/**/*.ts"
+	yarn dlx prettier --write "src"
 	yarn dlx eslint --fix
 
 ifeq ($(commit), true)
-	$(eval changes = $(shell git status -s))
-	$(if $(strip $(changes)), git add .; git commit -m 'cleanup(misc): formatting and lint changes'; git push -u origin $(PUSH_BRANCH))
+	git add .
+	git commit -m 'cleanup(misc): formatting and lint changes'
+	git push -u origin $(PUSH_BRANCH)
+
+	# $(eval changes = $(shell git status -s))
+
+	# echo changes = $(shell git status -s)
+
+	# $(if $(strip $(changes)), git commit -m 'cleanup(misc): formatting and lint changes'; git push -u origin $(PUSH_BRANCH))
 endif
 
 .PHONY: artifacts
