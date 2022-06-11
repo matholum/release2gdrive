@@ -14,16 +14,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
+        ref: ${{ github.head_ref }}
         token: ${{ github.token }}
+        fetch-depth: 0
     - uses: actions/setup-node@v2
       with:
         node-version: '17'
         cache: 'yarn'
-    - name: Build affected
+    - name: Build
       env:
-        BASE_REF: origin/${{ github.base_ref }}
-        HEAD_REF: origin/${{ github.head_ref }}
+        HEAD_REF: ${{ github.head_ref }}
         GITHUB_USER: ${{ secrets.GIT_USER_KILLIAN }}
         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_KILLIAN }}
       run: |

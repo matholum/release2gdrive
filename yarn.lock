@@ -1028,6 +1028,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/minimist@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@types/minimist@npm:1.2.2"
+  checksum: b8da83c66eb4aac0440e64674b19564d9d86c80ae273144db9681e5eeff66f238ade9515f5006ffbfa955ceff8b89ad2bd8ec577d7caee74ba101431fb07045d
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*, @types/node@npm:>=12":
   version: 17.0.41
   resolution: "@types/node@npm:17.0.41"
@@ -4513,6 +4520,7 @@ __metadata:
   dependencies:
     "@types/glob": ^7.2.0
     "@types/jest": ^28.1.1
+    "@types/minimist": ^1.2.2
     "@types/underscore": ^1.11.4
     "@typescript-eslint/eslint-plugin": ^5.27.1
     "@typescript-eslint/parser": ^5.27.1
@@ -4525,6 +4533,7 @@ __metadata:
     husky: ^8.0.1
     import-sort-style-renke: ^6.0.0
     jest: ^28.1.1
+    minimist: ^1.2.6
     pinst: ^3.0.0
     prettier: ^2.6.2
     prettier-plugin-import-sort: ^0.0.7
