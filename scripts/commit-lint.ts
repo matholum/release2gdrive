@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-import { types, scopes } from '../.cz-config.js';
+import { execSync } from 'child_process';
+
+import { scopes, types } from '../.cz-config.js';
 
 console.log('🧐🧐 Validating git commit message 🧐🧐\n\n');
-const gitMessage = require('child_process')
-  .execSync('git log -1 --no-merges')
-  .toString()
-  .trim();
+const gitMessage = execSync('git log -1 --no-merges').toString().trim();
 
 const allowedTypes = types.map((type) => type.value);
 const allowedScopes = scopes.map((scope) => scope.name);
 
 const commitMsgRegex = `(${allowedTypes.join('|')})\\((${allowedScopes.join(
   '|'
+  // eslint-disable-next-line no-useless-escape
 )})\\):\\s(([a-z0-9:\-\s])+)`;
 
 const matchCommit = new RegExp(commitMsgRegex, 'g').test(gitMessage);

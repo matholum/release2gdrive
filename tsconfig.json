@@ -1,16 +1,16 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-      "rootDir": ".",
-      "sourceMap": true,
-      "declaration": false,
-      "moduleResolution": "node",
-      "target": "es2015",
-      "module": "commonjs",
-      "lib": ["es2017", "dom"],
-      "baseUrl": ".",
-      "esModuleInterop": true
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "tmp"]
-  }
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "esModuleInterop": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "tmp"]
+}

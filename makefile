@@ -25,8 +25,8 @@ format:
 
 	corepack enable
 	yarn install --immutable
-	yarn dlx prettier --write --list-different "src/**/*.ts"
-	yarn dlx eslint --fix
+	yarn dlx prettier --write --list-different .
+	yarn dlx eslint --fix .
 
 ifeq ($(commit), true)
 	$(eval changes = $(shell git status -s))
