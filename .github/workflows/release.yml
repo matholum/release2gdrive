@@ -42,4 +42,4 @@ jobs:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           echo 🚢 Creating release $RELEASE_VERSION...\n
-          hub release create -a ./dist -d -m "$RELEASE_VERSION" -m "$COMMIT_MESSAGE" "v$RELEASE_VERSION"
+          hub release create $(find "./dist" -type f -printf "-a %p ") -d -m "$RELEASE_VERSION" -m "$COMMIT_MESSAGE" "v$RELEASE_VERSION"

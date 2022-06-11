@@ -66,8 +66,8 @@ version:
 	yarn install --immutable;
 
 	$(eval current_version = $(shell npm pkg get version))
-	# $(eval new_version = $(shell yarn dlx -q semver -i patch $(current_version)))
-	$(eval new_version = $(shell yarn dlx -q semver -i prerelease --preid=alpha $(current_version)))
+	# $(eval new_version = $(shell npx -q semver -i patch $(current_version)))
+	$(eval new_version = $(shell npx -q semver -i prerelease --preid=alpha $(current_version)))
 
 ifeq ($(tag), true)
 	git tag v$(current_version);
@@ -80,7 +80,7 @@ endif
 	npm version $(new_version) --commit-hooks=false --git-tag-version=false;
 
 ifeq ($(commit), true)
-	git add .
+	git add package.json
 	git commit -m 'chore(repo): bumping version to $(new_version)';
 	git push -u origin $(PUSH_BRANCH)
 endif

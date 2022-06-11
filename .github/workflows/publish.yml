@@ -32,7 +32,7 @@ jobs:
           hub release download "$TAG_NAME" -i "*.zip";
           
           echo 📦 Unzipping release2gdrive_$TAG_NAME.zip...
-          unzip -q release2gdrive_$TAG_NAME.zip
+          unzip -q release2gdrive_${TAG_NAME#*v}.zip
 
           echo 📡 Publishing to npm...
           npm publish ./build
