@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
-    "@types/jest": "^28.1.1",
+    "@types/jest": "^28.1.4",
     "@types/minimist": "^1.2.2",
     "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
@@ -33,7 +33,7 @@
     "glob": "^8.0.3",
     "husky": "^8.0.1",
     "import-sort-style-renke": "^6.0.0",
-    "jest": "^28.1.1",
+    "jest": "^28.1.2",
     "minimist": "^1.2.6",
     "pinst": "^3.0.0",
     "prettier": "^2.6.2",
